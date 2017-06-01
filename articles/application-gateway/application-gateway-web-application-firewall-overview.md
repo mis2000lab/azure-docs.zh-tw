@@ -27,7 +27,7 @@ ms.lasthandoff: 05/04/2017
 
 Web 應用程式防火牆 (WAF) 是一項應用程式閘道功能，可提供 Web 應用程式的集中式保護，免於遭遇常見的攻擊和弱點。 
 
-Web 應用程式防火牆會根據 [OWASP 核心規則集](https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project) 3.0 或 2.2.9 中的規則提供保護。 Web 應用程式已逐漸成為利用常見已知弱點的惡意攻擊目標。 這些攻擊中最常見的是 SQL 插入式攻擊、跨網站指令碼攻擊等等。 想要防止應用程式的程式碼受到這類攻擊會非常困難，而且可能需要對多層次的應用程式拓撲執行嚴格的維護、修補和監視工作。 集中式 Web 應用程式防火牆有助於簡化安全性管理作業，且更加確保應用程式管理員能夠對抗威脅或入侵。 相較於保護每個個別的 Web 應用程式，WAF 方案還可透過在中央位置修補已知弱點，更快地因應安全性威脅。 現有的應用程式閘道可以輕易地轉換成已啟用 Web 應用程式防火牆的應用程式閘道。
+Web 應用程式防火牆會根據 [OWASP 核心規則集](https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project) 3.0 或 2.2.9 中的規則提供保護。 Web 應用程式已逐漸成為利用常見已知弱點的惡意攻擊目標。 這些攻擊中最常見的是 資料隱碼攻擊（SQL Injection）、跨站台指令碼（XSS攻擊）等等。 想要防止應用程式的程式碼受到這類攻擊會非常困難，而且可能需要對多層次的應用程式拓撲執行嚴格的維護、修補和監視工作。 集中式 Web 應用程式防火牆有助於簡化安全性管理作業，且更加確保應用程式管理員能夠對抗威脅或入侵。 相較於保護每個個別的 Web 應用程式，WAF 方案還可透過在中央位置修補已知弱點，更快地因應安全性威脅。 現有的應用程式閘道可以輕易地轉換成已啟用 Web 應用程式防火牆的應用程式閘道。
 
 ![imageURLroute](./media/application-gateway-web-application-firewall-overview/WAF1.png)
 
@@ -57,7 +57,7 @@ Web 應用程式防火牆會根據 [OWASP 核心規則集](https://www.owasp.org
 
 Web 應用程式防火牆已預先設定為使用 CRS 3.0，或者您可以選擇使用 2.2.9。 CRS 3.0 的誤判情形低於 2.2.9。 能夠[自訂規則以符合您需求](application-gateway-customize-waf-rules-portal.md)。 Web 應用程式防火牆防禦的一些常見 Web 弱點包括︰
 
-* SQL 插入式攻擊保護
+* 資料隱碼（SQL Injection）攻擊保護
 * 跨網站指令碼保護
 * 常見 Web 攻擊保護，例如命令插入式攻擊、HTTP 要求走私、HTTP 回應分割和遠端檔案包含攻擊
 * 防範 HTTP 通訊協定違規
@@ -87,8 +87,8 @@ Web 應用程式防火牆已預先設定為使用 CRS 3.0，或者您可以選�
 |**[REQUEST-931-APPLICATION-ATTACK-RFI](application-gateway-crs-rulegroups-rules.md#crs931)**|包含規則，可防範遠端檔案引入 (RFI)|
 |**[REQUEST-932-APPLICATION-ATTACK-RCE](application-gateway-crs-rulegroups-rules.md#crs932)**|包含規則，可防止遠端執行程式碼。|
 |**[REQUEST-933-APPLICATION-ATTACK-PHP](application-gateway-crs-rulegroups-rules.md#crs933)**|包含規則，可防禦 PHP 插入式攻擊。|
-|**[REQUEST-941-APPLICATION-ATTACK-XSS](application-gateway-crs-rulegroups-rules.md#crs941)**|包含規則，可防範跨網站指令碼。|
-|**[REQUEST-942-APPLICATION-ATTACK-SQLI](application-gateway-crs-rulegroups-rules.md#crs942)**|包含規則，可防禦 SQL 插入式攻擊。|
+|**[REQUEST-941-APPLICATION-ATTACK-XSS](application-gateway-crs-rulegroups-rules.md#crs941)**|包含規則，可防範跨網站指令碼（XSS）攻擊。|
+|**[REQUEST-942-APPLICATION-ATTACK-SQLI](application-gateway-crs-rulegroups-rules.md#crs942)**|包含規則，可防禦 資料隱碼（SQL Injection）攻擊。|
 |**[REQUEST-943-APPLICATION-ATTACK-SESSION-FIXATION](application-gateway-crs-rulegroups-rules.md#crs943)**|包含規則，可防禦工作階段固定攻擊。|
 
 #### <a name="owasp229"></a>OWASP_2.2.9
@@ -103,7 +103,7 @@ Web 應用程式防火牆已預先設定為使用 CRS 3.0，或者您可以選�
 |**[crs_30_http_policy](application-gateway-crs-rulegroups-rules.md#crs30)**|包含規則，可防範限制的方法、標頭和檔案類型。 |
 |**[crs_35_bad_robots](application-gateway-crs-rulegroups-rules.md#crs35)**|包含規則，可防禦 Web 編目程式和掃描器。|
 |**[crs_40_generic_attacks](application-gateway-crs-rulegroups-rules.md#crs40)**|包含規則，可防禦一般攻擊 (工作階段固定、遠端檔案引入、PHP 插入等等)|
-|**[crs_41_sql_injection_attacks](application-gateway-crs-rulegroups-rules.md#crs41sql)**|包含規則，可防禦 SQL 插入式攻擊。|
+|**[crs_41_sql_injection_attacks](application-gateway-crs-rulegroups-rules.md#crs41sql)**|包含規則，可防禦 資料隱碼（SQL Injection）攻擊。|
 |**[crs_41_xss_attacks](application-gateway-crs-rulegroups-rules.md#crs41xss)**|包含規則，可防範跨網站指令碼。|
 |**[crs_42_tight_security](application-gateway-crs-rulegroups-rules.md#crs42)**|包含規則，可防禦路徑周遊攻擊|
 |**[crs_45_trojans](application-gateway-crs-rulegroups-rules.md#crs45)**|包含規則，可防禦特洛伊木馬後門程式。|
